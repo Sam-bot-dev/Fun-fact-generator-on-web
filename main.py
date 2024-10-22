@@ -1,9 +1,4 @@
-# pip install pywebio
-import json #A lightweight format for storing and transporting data. 
-import requests #Requests is a powerful API that allows you to send HTTP requests in Python
-from pywebio.input import *
-from pywebio.output import *
-from pywebio.session import *# pip install pywebio requests beautifulsoup4
+# pip install pywebio requests beautifulsoup4
 import requests
 from bs4 import BeautifulSoup  # Use for HTML parsing
 from pywebio.input import *
@@ -51,30 +46,3 @@ if __name__ == '__main__':
 
     # Hold the session to keep it running
     hold()
-
-def get_fun_fact(_):
-  clear() #To clear the screen on out html page everytime we use it 
-  put_html('<p><h1>Fun Fact</h1></p>')
-  url="https://www.factslides.com/#google_vignette"
-  Responce=requests.get(url)
-  data=json.loads(Responce.text)
-  fact=data['text']
-  style(put_text(fact), 'color:blue; font-size: 30px')
-  put_buttons(
-      [dict(label='Click me', value='outline-success', color='outline-success')],
-      onclick=get_fun_fact
-  )
-if __name__ == '__main__':
-  # Put a heading "Fun Fact Generator"
-  put_html(
-      '<p align="left">'
-      '<h2><img src="https://media.geeksforgeeks.org/wp-content/uploads/20210720224119/MessagingHappyicon.png" width="7%"> Fun Fact Generator</h2>'
-      '</p>'
-  )
-
-  # Hold the session for a long time and put the "Click me" button
-  put_buttons(
-      [dict(label='Click me', value='outline-success', color='outline-success')],
-      onclick=get_fun_fact
-  )
-  hold()
